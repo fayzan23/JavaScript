@@ -1,0 +1,121 @@
+
+<!-- Assignment-5 – COSC 2328 – Professor McCurry -->
+<!-- Implemented by - Fayzan Bhatti -->
+<!DOCTYPE html>
+<html lang="en"></html>
+<html>
+
+    <head>
+        <title>Homework 5</title>
+        <meta charset="UTF-8" name="author" content="Fayzan Bhatti">
+    </head>
+
+    <style>
+        body {background-color:rgb(157, 224, 175)}
+        body {font-weight: bold;}
+        p {font-weight: normal;}
+    </style>
+
+    <body>
+        <form>
+            <label for="user">Username:</label>
+            <input type="text" id="username" name="username" required="required" placeholder="Username"/>
+            <br>
+            <label for="e-mail">Email:</label>
+            <input type="email" id="email" name="email" required="required" placeholder="Email"/>
+        </form>
+        <br>
+        <button onclick="usernameEmail()">Register</button>
+
+        <br>
+        <hr>
+        <br>
+
+        <caption> (Please Enter 2 Numbers from 1 to 100) </caption>
+        <form>
+            <label for="num1">Number 1:</label>
+            <input type="number" id="num1" name="num1" min="1" max ="100"><br>
+            <label for="num2">Number 2:</label>
+            <input type="number" id="num2" name="num2" min="1" max ="100"><br>
+
+        <p style="font-weight: bold;">Solve:</p>
+        <input type="button" onclick="multiplyBy()" Value="*"/>
+        <input type="button" onclick="divideBy()" Value="/"/>
+        <input type="button" onclick="addBy()" Value="+"/>
+        <input type="button" onclick="subtractBy()" Value="-"/>
+        <input type="button" onclick="modBy()" Value="%"/>
+		</form>
+        <hr>
+        <br>
+
+        <form>
+            <label for="color">Answer text color:</label>
+            <input type="color" id="colorInputColor">
+            <br>
+            <br>
+            <input type="button" id="colorButton" value="Change Color" onclick="colorChange()">
+            <br>
+            <hr>
+        </form>
+
+        <p class="result" id="p1"></p>
+        <p class="result" id="p2"></p> 
+
+        <script>
+            function mathOperations(){
+                var num1 = document.getElementById('num1').value;
+                var num2 = document.getElementById('num2').value;
+                var int = document.getElementById('result').value;
+
+            }
+
+            function usernameEmail(){
+                var user = document.getElementById("username").value;
+                var email = document.getElementById("email").value;
+                document.getElementById("p1").innerHTML = 
+                "Welcome " + user +"!" + "<br> You are registered at " + email;
+            }
+
+            function colorChange(){
+                let color = document.getElementById('colorInputColor').value;
+                document.getElementById('p1').style.color = color;
+                document.getElementById('p2').style.color = color;
+            }
+
+            function multiplyBy()
+            {
+            num1 = document.getElementById("num1").value;
+            num2 = document.getElementById("num2").value;
+            document.getElementById("p2").innerHTML = num1 + " * " + num2 + " = " + num1 * num2;
+            }
+
+            function divideBy()
+            {
+            num1 = document.getElementById("num1").value;
+            num2 = document.getElementById("num2").value;
+            document.getElementById("p2").innerHTML = num1 + " / " + num2 + " = " + num1 / num2;
+            }
+
+            function addBy()
+            {
+            num1 = document.getElementById("num1").value;
+            num2 = document.getElementById("num2").value;
+            document.getElementById("p2").innerHTML = num1 + " + " + num2 + " = " + num1 + num2;
+            }
+
+            function subtractBy()
+            {
+            num1 = document.getElementById("num1").value;
+            num2 = document.getElementById("num2").value;
+            document.getElementById("p2").innerHTML = num1 - num2 + " = " + num1 + " - " + num2;
+            }
+
+            function modBy()
+            {
+            num1 = document.getElementById("num1").value;
+            num2 = document.getElementById("num2").value;
+            document.getElementById("p2").innerHTML = num1 + " % " + num2 + " = " + num1 % num2;
+            }
+        </script>
+    </body>
+</html>
