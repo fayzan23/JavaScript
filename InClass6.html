@@ -1,0 +1,149 @@
+<!-- In Class Practice-6 – COSC 2328 – Professor McCurry -->
+<!-- Implemented by - Fayzan Bhatti -->
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			form
+			{
+				border-style: inset;
+			}
+			body
+			{
+				background-color: lightblue;
+			}
+		</style>
+	</head>
+	<body>
+		<form id="myform">
+			This form is initially empty, but we will put inside it new input fields!<br>
+			<input type="text" id="txt1"><br>
+		</form>
+		<br>
+		<button onclick="addfield()">Add a field to the above!</button>
+		<button onclick="addRadio()">Add radio buttons!</button>
+		<button onclick="addHeading()">Create new heading!</button>
+		<button onclick="remakeForm()">Remake form!</button>
+		
+		<script>
+			// 1) This function will add a new text input field to the above
+			count = 0;
+			function addfield()
+			{
+				count++;
+				var mytext = document.createElement("input");
+				var mybreak = document.createElement("br");
+				mytext.setAttribute("type", "text");
+				mytext.setAttribute("id", "text"+count);
+				mytext.setAttribute("value", "text field: " + count);
+				document.getElementById('myform').appendChild(mytext);
+				document.getElementById('myform').appendChild(mybreak);
+			}
+		
+			// 2) This function will add a new set of radio buttons
+			count1 = 0;
+			function addRadio()
+			{
+				count1++;
+				var mytext = document.createElement("input");
+				var mybreak = document.createElement("br");
+				var radioLabel = document.createElement("label");
+				
+				
+				mytext.setAttribute("type", "radio");
+				mytext.setAttribute("id", "rdo"+count1);
+				mytext.setAttribute("value", "radio field: " + count1);
+				mytext.setAttribute("name", "testRadio");
+				mytext.setAttribute("class", "Radio");
+
+				radioLabel.setAttribute("for", "rdo" + count1);
+                radioLabel.textContent = "rdo" + count1;
+				
+				document.getElementById('myform').appendChild(mytext);
+				document.getElementById('myform').appendChild(radioLabel);
+				document.getElementById('myform').appendChild(mybreak);
+			}		
+		
+			// 3) This function will add a new heading with the contents of the fields.
+			count2 = 0;
+			function addHeading()
+			{
+			 if (count2 == 0){
+				 var newHead = document.createElement("h2");
+				 var mybreak = document.createElement("br");		
+						
+				newHead.setAttribute("style", "color:olive");		
+				newHead.setAttribute("name", "header1");
+				newHead.setAttribute("id", "currentContents");
+							   
+				var elements = document.getElementById("myform").elements;
+				var formInfo = [];			
+				for (var i = 0; i < elements.length; i++) {
+					 var item = elements.item(i);
+					 formInfo[i] = item.value;
+					 }
+					 
+				document.getElementById('myform').appendChild(mybreak);
+				document.getElementById('myform').appendChild(newHead);
+				document.getElementById('myform').appendChild(mybreak);
+				document.getElementById("currentContents").innerHTML = formInfo;	
+				count2++;
+			}
+			else
+			{
+				var header2 = document.getElementById("currentContents");
+				header2.remove();
+				var elements = document.getElementById("myform").elements;
+				var formInfo = [];
+				for (var i = 0; i < elements.length; i++) {
+					var item = elements.item(i);
+					formInfo[i] = item.value;
+				}
+				var newHead = document.createElement("h2");
+				var mybreak = document.createElement("br");
+
+				newHead.setAttribute("style", "color:maroon");
+				newHead.setAttribute("name", "header1");
+				newHead.setAttribute("id", "currentContents");
+
+				document.getElementById('myform').appendChild(newHead);
+				document.getElementById('myform').appendChild(mybreak);
+				document.getElementById("currentContents").innerHTML = formInfo;
+				}
+			}
+
+			function remakeForm(){
+				var myform = document.getElementById('myform');
+
+				elements = myform.length;
+
+				formInfo = "";
+
+				for(i = elements - 1; i > 0; i--) 
+				{
+
+					formInfo += myform.elements[i].value + "<br>";
+
+					myform.removeChild(myform.elements[i]);
+
+				}
+
+				document.getElementById('myform').innerHTML = formInfo;
+
+				var tmp = myform.getElementsByTagName('br');
+
+				for(i = tmp.length - 1; i > 0; i--)
+
+				{
+
+				myform.removeChild(tmp[i]);
+
+				}
+
+				document.body.removeChild(document.getElementsById("myform"))
+
+				}
+		
+		</script>
+	</body>
+</html>
