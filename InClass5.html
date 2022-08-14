@@ -1,0 +1,97 @@
+<!-- In-Class 5 - COSC 2328 - Professor McCurry -->
+<!-- Implemented by - Fayzan Bhatti -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      .column
+      {
+        float: left;
+        width: 33%;
+      }
+
+      body
+      {
+        background-color: lightgreen;
+        font-size: 12px;
+      }
+
+      #myform
+      {
+        border-style: inset;
+        max-width: 400px;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>On this webpage we will practice utilizing mouse events</h3>
+
+    <form id="myform">
+      This field should change color as we enter and leave: <input type="text" id="txt1" value="Some sample text"><br>
+      X-Coord: <input type="number" id="num1"><br>
+      Y-Coord: <input type="number" id="num2">
+    </form>
+
+    <div class="column">
+      <img onmouseover = "swapImage(this)" id="img1" width="400px" height="400px" src="https://webcdn.triongames.com/archeage/blogs/dragonraising/legends-return-dragons.gif"><br>
+      <img onmouseover = "increaseSize(this)" id="img2" width="400px" height="400px" src="https://www.realmofhistory.com/wp-content/uploads/2018/03/10-mythical-dragon-entities-facts_11.jpg">
+    </div>
+
+    <div class="column">
+      <img   id="graph" src="https://graphsketch.com/images/blank.png">
+    </div>
+
+    <script>
+	//Part1 Swap Image
+		document.getElementById("img1").addEventListener("onmouseover", swapImage);
+		function swapImage() {
+		tmp1 = img1.src ;
+		tmp2 = img2.src;
+		img1.src=tmp2;
+		img2.src=tmp1;
+		}
+	
+	//Part2 Change Image Size
+		document.getElementById("img2").addEventListener("mouseover", increaseSize);
+		function increaseSize() {
+		var currWidth = img2.clientWidth*1.50;
+		var currHeight = img2.clientHeight*1.50;
+		img2.width = currWidth;
+		img2.height = currHeight;
+		}
+
+	//Part3 Change Color 1
+		document.getElementById("txt1").addEventListener("mouseenter", chgColor);
+		function chgColor() {
+		txt1.style.backgroundColor = "LightBlue";
+		}
+	
+	//Part4 Change Color 2
+		document.getElementById("txt1").addEventListener("mouseleave", chgColor1);
+		function chgColor1() {
+		txt1.style.backgroundColor = "Orange";
+		}	
+	
+	//Part5 Mouse Coordinates
+		document.getElementById("graph").addEventListener("mousemove", getMouseCoord);
+		function getMouseCoord() {
+
+		var xx = event.clientX; 
+		var yy = event.clientY;
+		document.getElementById('num1').value = xx;
+		document.getElementById('num2').value = yy;
+		}	
+
+	//Part6 reset form
+  document.getElementById("myform").addEventListener("mouseleave",resetForm);
+  function resetForm() {
+    var resetWidth = img1.clientWidth
+    var resetHeight = img1.clientHeight
+    img2.width = resetWidth;
+    img2.height = resetHeight;
+    window.alert("X-Coordinate: "+num1.value + " |" +" Y-Coordinate: "+num2.value + " |" + " Text: " + txt1.value);
+  }
+  </script>
+  </body>
+</html>
